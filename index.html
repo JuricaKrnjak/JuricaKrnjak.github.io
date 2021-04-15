@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Najlošiji pojedinac</title>
+    <link rel="stylesheet" href="igraci.css">
+    <script
+    src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+    crossorigin="anonymous">
+    </script>
+</head>
+<body>
+    <div id="header">
+        <header>
+            Anketa
+        </header>
+    </div>
+    <div class="container">
+        <div id="left">
+            <p>S</p>
+            <p>l</p>
+            <p>o</p>
+            <p>v</p>
+            <p>e</p>
+            <p>n</p>
+            <p>i</p>
+            <p>j</p>
+            <p>a</p>
+        </div>
+        <div class="igraci">
+            <div>
+                <input type="radio" name="player">
+                <p>Dominik Livaković</p>
+            </div>
+            <div>
+                <input type="radio" name="player">
+                <p>Šime Vrsaljko</p>
+            </div>
+            <div>
+                <input type="radio" name="player">
+                <p>Dejan Lovren</p>
+            </div>
+            <div>
+                <input type="radio" name="player">
+                <p>Domagoj Vida</p>
+            </div>
+            <div>
+                <input type="radio" name="player">
+                <p>Borna Barišić</p>
+            </div>
+            <div>
+                <input type="radio" name="player">
+                <p>Marcelo Brozović</p>
+            </div>
+            <div>
+                <input type="radio" name="player">
+                <p>Mateo Kovačić</p>
+            </div>
+            <div>
+                <input type="radio" name="player">
+                <p>Luka Modrić</p>
+            </div>
+            <div>
+                <input type="radio" name="player">
+                <p>Nikola Vlašić</p>
+            </div>
+            <div>
+                <input type="radio" name="player">
+                <p>Andrej Kramarić</p>
+            </div>
+            <div>
+                <input type="radio" name="player">
+                <p>Ivan Perišić</p>
+            </div>
+            <div>
+                <input type="radio" name="player">
+                <p>Mislav Oršić</p>
+            </div>
+                    <div>    
+                <input type="radio" name="player">
+                <p>Mario Pašalić</p>
+            </div>
+            <div>
+                <input type="radio" name="player">
+                <p>Josip Brekalo</p>
+            </div>
+            <div>
+                <input type="radio" name="player">
+                <p>Ante Budimir</p>
+            </div>
+            <div class="vote">
+                <button id="voteButton">Glasaj</button>
+            </div>
+        </div>
+        <div id="right">
+            <p>H</p>
+            <p>r</p>
+            <p>v</p>
+            <p>a</p>
+            <p>t</p>
+            <p>s</p>
+            <p>k</p>
+            <p>a</p>
+        </div>
+    </div>
+    <div id="bottom"></div>
+</body>
+<script>
+    voteButton = document.querySelector('#voteButton');
+    voteButton.addEventListener('click', sendVote);
+    checkedPlayer = document.querySelectorAll('.igraci>div>input');
+    var voted = 0;
+    function sendVote(){
+        if(voted<1){
+            for(var i=0; i<checkedPlayer.length; i++){
+                if($(checkedPlayer[i]).prop('checked')){
+                    var nadeno = true;
+                    var playerName = $(checkedPlayer[i]).closest('div').find('p').text();
+                }
+            }
+            if(nadeno){
+                var worstPlayer = {name: playerName};
+                s = document.createElement('script');
+                s.src = 'igraciJSONP.php?x=' + JSON.stringify(worstPlayer);
+                document.body.appendChild(s);
+            }
+            else{
+                alert('Odaberite igrača');
+            }
+        }
+        else{
+            alert('Već ste glasali');
+        }
+    }
+    function result(voteNum){
+        voted++;
+        var voteNumTotal = 0;
+        var percentage;
+        igraciDiv = document.querySelector('.igraci');
+        igraciDiv.style.marginRight = '15px';
+        rightDiv = document.querySelector('#right');
+        newDiv = document.createElement('div');
+        newDiv.style.height = '100%';
+        newDiv.style.marginTop = '8px';
+        newDiv.style.marginRight = '125px';
+        rightDiv.parentNode.insertBefore(newDiv, rightDiv);
+
+        for(var i=0; i<checkedPlayer.length; i++){
+            voteNumTotal += parseInt(voteNum[i]);
+        }
+
+        for(var i=0; i<checkedPlayer.length; i++){
+            nowe = document.querySelectorAll('.igraci>div');
+            var percentage = (voteNum[i]/voteNumTotal)*100;
+            var playerWidth = (percentage.toFixed(0))*5 + 'px';
+            $(checkedPlayer[i]).closest('div').find('p').html("<b>" + $(checkedPlayer[i]).closest('div').find('p').text() + "</b>" + ' / ' + ' ' 
+            + ((voteNum[i]/voteNumTotal)*100).toFixed(2) + '%' + ' (broj glasova:' + ' ' + voteNum[i] +')');
+            line = document.createElement('div');
+            line.style.width = playerWidth;
+            line.style.height = '20px';
+            line.style.backgroundColor = 'green';
+            line.style.marginBottom = '16px';
+            newDiv.appendChild(line);
+        }
+    }
+</script>
+</html>
