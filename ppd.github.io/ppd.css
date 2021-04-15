@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+header{
+    position: relative;
+    width: 100%;
+    height: 20%;
+    position: fixed;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    z-index: 1;
+    border-radius: 12px;
+}
+header h1:hover{
+    opacity: 0.5;
+}
+header img{
+    width: 15%;
+    height: 100%;
+}
+header h1{
+    color: white;
+    text-align: center;
+    font-size: 42pt;
+    font-family: 'Lobster', cursive;
+    background-color: rgb(18, 21, 172);
+    flex-grow: 10;
+}
+.nav-div{
+    position: absolute;
+    top: 25%;
+    margin-left: 150px;
+    margin-right: 150px;
+    width: calc(100% - 300px);
+    height: 70%;
+    text-align: center;
+}
+nav{
+    display: flex;
+    height: 40px;
+}
+nav a{
+    align-content: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 25pt;
+    width: 25%;
+    height: 100%;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-sizing:border-box;
+}
+nav a:hover{
+    color: white;
+    background-color: rgb(18, 21, 172);
+}
+.nav-bckgrnd{
+    position: absolute;
+    top: calc(25% + 40px);
+    margin-left: 150px;
+    margin-right: 150px;
+    width: calc(100% - 300px);
+    height: 80%;
+    background-image: url(C:/xampp/htdocs/Juki/Slike/ppd_zg_background.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.footer{
+    display: flex;
+    position: absolute;
+    top: calc(100% + 100px);
+    width: 100%;
+    height: 35%;
+    background-color: rgb(18, 21, 172);
+    border-radius: 12px;
+}
+.footer_baner{
+    border: 1px solid black;
+    flex-grow: 1;
+    width: 100%;
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    color: white;
+}
+.footer_sponzori{
+    margin-left: -25%;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 80%;
+}
+.footer_sponzori img{
+    width: 18%;
+    height: 50%;
+    opacity: 0.9;
+    border-radius: 10px;
+}
+.footer_sponzori img:hover{
+    opacity: 0.8;
+    cursor: pointer;
+}
+.kontakt{
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+    text-align: left;
+    color: white;
+    font-size: 14pt;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+.kontakt a{
+    color: white;
+}
+.kontakt i{
+    height: 32px;
+    font-size: 24px;
+}
